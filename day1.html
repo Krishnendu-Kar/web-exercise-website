@@ -1,0 +1,55 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Day 1 - Sharpened Jawline</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="day.css"/>
+
+</head>
+<body>
+  <div class="header">
+    <div class="back-btn" onclick="window.history.back()">⬅️</div>
+    <div class="title-section">
+      <h1>Day 1</h1>
+      <p>Sharpened Jawline</p>
+    </div>
+  </div>  <div class="stats">
+    <div><strong>6</strong>Exercises</div>
+    <div><strong>6</strong>Minutes</div>
+  </div>  <div id="exercise-list"></div>
+
+<script>
+  const exercises = [
+    { name: "Side To Side Turn", link: "day1ex1.html", video: "demo.mp4" },
+    { name: "HYOID STRETCH", link: "day1ex2.html", video: "vid2.mp4" },
+    { name: "Tongue Turning", link: "day1ex3.html", video: "vid3.mp4" },
+    { name: "Eyes And Cheeks", link: "day1ex4.html", video: "vid4.mp4" },
+    { name: "Neck Lift", link: "day1ex5.html", video: "vid5.mp4" },
+    { name: "Full Face Massage", link: "day1ex6.html", video: "vid6.mp4" }
+  ];
+
+  const container = document.getElementById('exercise-list');
+  exercises.forEach(ex => {
+    container.innerHTML += `
+      <div class="card" onclick="goToExercise('${ex.link}')">
+        <video src="${ex.video}" autoplay loop muted playsinline "></video>
+        <div>
+          <div class="exercise-name">${ex.name}</div>
+          <div class="exercise-time">01:00</div>
+        </div>
+      </div>
+    `;
+  });
+
+  function goToExercise(link) {
+    window.location.href = link;
+  }
+</script>
+  
+ <div class="footer-btn" onclick="goToExercise('day1ex1.html')">Do it Now</div>
+<script>
+  const goToExercise = p => location.href = p;
+  </script>
+</body>
+</html>

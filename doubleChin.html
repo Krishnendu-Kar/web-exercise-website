@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Jawline Exercises</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-  <style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<style>
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
     body { background: #f5f5f5; color: #111; }
 
@@ -97,14 +97,19 @@
     .upnav-bar::-webkit-scrollbar { display: none; }
     .upnav-bar { -ms-overflow-style: none; scrollbar-width: none; }
 
+  .plan-day.locked {
+  opacity: 0.5;
+  pointer-events: none;
+}
+  
   </style>
 </head>
 <body>
 
   <!-- Top Sub Nav -->
   <div class="upnav-bar">
-    <div class="upnav-item active" onclick="goToPage('index.html')">Sharpened Jawline</div>
-    <div class="upnav-item" onclick="goToPage('doubleChin.html')">Remove Double Chin</div>
+    <div class="upnav-item " onclick="goToPage('index.html')">Sharpened Jawline</div>
+    <div class="upnav-item active" onclick="goToPage('doubleChin.html')">Remove Double Chin</div>
   </div>
 
   <!-- Main Content -->
@@ -113,19 +118,35 @@
 
     <div class="card">
       <div>
-        <div style="font-weight: bold; font-size: 1.2rem;">Sharpened Jawline</div>
-        <div>12/30 Days Finished</div>
+        <div style="font-weight: bold; font-size: 1.2rem;">Remove Double Chins</div>
+        <div><span id="completedDaysCount">0</span>/30 Days Finished</div>
       </div>
-      <img src="jawlineExer.jpg" alt="Profile" />
+      <img src="" alt="Profile" />
     </div>
 
     <!-- Generate 30 Days -->
-    <script>
-      document.write([...Array(30)].map((_, i) =>
-        `<div class="plan-day" onclick="window.location.href='day${i + 1}.html'">
-          Day ${i + 1} <span class="start-btn">Start ▶</span>
-        </div>`).join(''));
-    </script>
+   <script>
+  const completedDays = parseInt(localStorage.getItem('doubleChinCompletedDays')) || 0;
+  const container = document.querySelector('.container');
+
+  for (let i = 1; i <= 30; i++) {
+    const unlocked = i <= 4 || i <= completedDays + 1;
+
+    const dayDiv = document.createElement('div');
+    dayDiv.className = 'plan-day';
+    if (unlocked) {
+      dayDiv.onclick = () => window.location.href = `douday${i}.html`;
+    } else {
+      dayDiv.classList.add('locked');
+    }
+
+    dayDiv.innerHTML = `Day ${i} <span class="start-btn">${unlocked ? 'Start ▶' : 'Locked 🔒'}</span>`;
+    container.appendChild(dayDiv);
+  }
+
+  // Update the completed days count in the card
+  document.getElementById('completedDaysCount').textContent = completedDays;
+</script>
   </div>
 
   <!-- Bottom Nav -->

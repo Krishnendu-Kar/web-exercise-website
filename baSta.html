@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Balance & Stability</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <link rel="stylesheet" href="exercise.css"/>
+
+</head>
+<body>
+
+  <!-- Top Navbar -->
+  <div class="upnav-bar">
+    <div class="upnav-item" onclick="goToPage('exercise.html')">Cardio (Aerobic)</div>
+    <div class="upnav-item "onclick="goToPage('flexo.html')">Flexibility & Mobility</div>
+    <div class="upnav-item" onclick="goToPage('stre.html')">Strength Training</div>
+    <div class="upnav-item active" onclick="goToPage('baSta.html')">Balance & Stability</div>
+    <div class="upnav-item" onclick="goToPage('posC.html')">Posture Correction</div>
+    <div class="upnav-item" onclick="goToPage('brainReaf.html')">Brain & Reaction</div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="section-title">Balance & Stability Exercises</div>
+    <div class="grid">
+      <div class="exercise-card" onclick="goToPage('exeBalance1.html')">
+        <img src="singleleg.jpg" class="exercise-image" alt="Single-leg Stand">
+        <div class="exercise-content">
+          <div class="exercise-title">Single-leg Stand</div>
+          <div class="exercise-time">3×30 sec</div>
+        </div>
+      </div>
+
+      <div class="exercise-card" onclick="goToPage('exeBalance2.html')">
+        <img src="board.jpg" class="exercise-image" alt="Balance Board">
+        <div class="exercise-content">
+          <div class="exercise-title">Balance Board</div>
+          <div class="exercise-time">5 min</div>
+        </div>
+      </div>
+
+      <div class="exercise-card" onclick="goToPage('exeBalance3.html')">
+        <img src="bosu.jpg" class="exercise-image" alt="Bosu Ball Squats">
+        <div class="exercise-content">
+          <div class="exercise-title">Bosu Ball Squats</div>
+          <div class="exercise-time">3×12 reps</div>
+        </div>
+      </div>
+
+      <div class="exercise-card" onclick="goToPage('exeBalance4.html')">
+        <img src="taichi.jpg" class="exercise-image" alt="Tai Chi">
+        <div class="exercise-content">
+          <div class="exercise-title">Tai Chi</div>
+          <div class="exercise-time">15–20 min</div>
+        </div>
+      </div>
+
+      <div class="exercise-card" onclick="goToPage('exeBalance5.html')">
+        <img src="heeltoe.jpg" class="exercise-image" alt="Heel-to-Toe Walk">
+        <div class="exercise-content">
+          <div class="exercise-title">Heel-to-Toe Walk</div>
+          <div class="exercise-time">2 min</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Navbar -->
+ <div class="nav-bar">
+    <div class="nav-item" onclick="goToPage('index.html')"><i class="fa-solid fa-list-check"></i><br>Plan</div>
+    <div class="nav-item" onclick="goToPage('discover.html')"><i class="fa-solid fa-face-smile"></i><br>Discover</div>
+    <div class="nav-item active"><i class="fa-solid fa-dumbbell"></i><br>Exercise</div>
+    <div class="nav-item" onclick="goToPage('progress.html')"><i class="fa-solid fa-calendar-days"></i><br>Progress</div>
+    <div class="nav-item" onclick="goToPage('settings.html')"><i class="fa-solid fa-gear"></i><br>Settings</div>
+ </div>
+
+  <!-- JavaScript -->
+  <script>
+    function goToPage(page) {
+      window.location.href = page;
+    }
+  </script>
+</body>
+</html>

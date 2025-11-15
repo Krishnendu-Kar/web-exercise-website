@@ -1,0 +1,134 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Exercise Player</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="dayAexB.css"/>
+ 
+</head>
+<body>
+  <div class="start-title">Sharpened Jawline<br><strong>Day 11</strong><br><strong>Exercise 5</strong></div>
+  <div class="video-container">
+    <video id="exerciseVideo" autoplay muted loop>
+      <source src="demo.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <div class="info">
+    <div>SIDE–TO–SIDE TURNS <span class="info-icon" onclick="toggleDescription()">ℹ️</span></div>
+    <div class="description-box" id="description">
+      This exercise helps in relaxing your jaw muscles and improving facial toning. Repeat with consistency.
+    </div>
+    <div class="timer" id="countdown">01:00</div>
+  </div>
+
+  <div class="controls">
+    <button onclick="prevExercise()">⏮️</button>
+    <button id="playPauseBtn" onclick="toggleTimer()">⏸️</button>
+    <button id="nextBtn" onclick="nextExercise()">⏭️</button>
+  </div>
+
+<script>
+  const video = document.getElementById("exerciseVideo");
+  const playPauseBtn = document.getElementById("playPauseBtn");
+  const nextBtn = document.getElementById("nextBtn");
+  let time = 60;
+  let timer = null;
+  let running = true;
+
+  const day = 11;
+  const ex = 5;
+  const key = `day${day}_ex${ex}`;
+
+  function updateTimer() {
+    const countdown = document.getElementById("countdown");
+    const minutes = Math.floor(time / 60).toString().padStart(2, '0');
+    const seconds = (time % 60).toString().padStart(2, '0');
+    countdown.textContent = `${minutes}:${seconds}`;
+  }
+
+  function startTimer() {
+    if (timer) clearInterval(timer);
+    timer = setInterval(() => {
+      if (time > 0) {
+        time--;
+        updateTimer();
+      } else {
+        clearInterval(timer);
+        markExerciseComplete();
+        alert("✅ Exercise complete! You can now go to the next one.");
+        nextBtn.disabled = false;
+      }
+    }, 1000);
+  }
+
+  function toggleTimer() {
+    if (running) {
+      clearInterval(timer);
+      video.pause();
+      playPauseBtn.textContent = "▶️";
+    } else {
+      startTimer();
+      video.play();
+      playPauseBtn.textContent = "⏸️";
+    }
+    running = !running;
+  }
+
+  function toggleDescription() {
+    const desc = document.getElementById("description");
+    desc.classList.toggle("show");
+  }
+
+  function prevExercise() {
+    window.location.href = "douday11ex4.html";
+  }
+
+  function nextExercise() {
+    if (localStorage.getItem(key) === 'done') {
+      goToNextExercise(day, ex);
+    } else {
+      alert("⏳ Please wait for the timer to finish before moving forward.");
+    }
+  }
+
+  function goToNextExercise(day, ex) {
+    if (ex < 6) {
+      window.location.href = `douday${day}ex${ex + 1}.html`;
+    } else {
+      alert("🎉 All 6 exercises for this day are completed!");
+    }
+  }
+
+  function markExerciseComplete() {
+    localStorage.setItem(key, 'done');
+
+    let allDone = true;
+    for (let i = 1; i <= 6; i++) {
+      if (localStorage.getItem(`day${day}_ex${i}`) !== 'done') {
+        allDone = false;
+        break;
+      }
+    }
+
+    if (allDone) {
+      const current = parseInt(localStorage.getItem('doubleChinCompletedDays')) || 0;
+      if (day > current) {
+        localStorage.setItem('doubleChinCompletedDays', day);
+        alert(`🎉 Day ${day} completed! Next day is now unlocked.`);
+      }
+    }
+  }
+
+  updateTimer();
+  startTimer();
+
+  // Disable next button initially if not done
+  if (localStorage.getItem(key) !== 'done') {
+    nextBtn.disabled = true;
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Flexibility</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <link rel="stylesheet" href="exercise.css"/>
+
+</head>
+<body>
+
+  <!-- Top Navbar -->
+  <div class="upnav-bar">
+    <div class="upnav-item" onclick="goToPage('exercise.html')">Cardio (Aerobic)</div>
+    <div class="upnav-item active">Flexibility & Mobility</div>
+    <div class="upnav-item" onclick="goToPage('stre.html')">Strength Training</div>
+    <div class="upnav-item" onclick="goToPage('baSta.html')">Balance & Stability</div>
+    <div class="upnav-item" onclick="goToPage('posC.html')">Posture Correction</div>
+    <div class="upnav-item" onclick="goToPage('brainReac.html')">Brain & Reaction</div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="section-title">Flexibility & Mobility Exercises</div>
+    <div class="grid">
+      <div class="exercise-card" onclick="goToPage('exeFlexi1.html')">
+        <img src="dynamic.jpg" class="exercise-image" alt="Dynamic Stretching">
+        <div class="exercise-content">
+          <div class="exercise-title">Dynamic Stretching</div>
+          <div class="exercise-time">5–10 min</div>
+        </div>
+      </div>
+      
+      <div class="exercise-card" onclick="goToPage('exeFlexi2.html')">
+        <img src="yoga.jpg" class="exercise-image" alt="Yoga">
+        <div class="exercise-content">
+          <div class="exercise-title">Yoga (e.g., Downward Dog)</div>
+          <div class="exercise-time">10–20 min</div>
+        </div>
+      </div>
+
+      <div class="exercise-card" onclick="goToPage('exeFlexi3.html')">
+        <img src="static.jpg" class="exercise-image" alt="Static Stretching">
+        <div class="exercise-content">
+          <div class="exercise-title">Static Stretching</div>
+          <div class="exercise-time">5 min</div>
+        </div>
+      </div>
+
+      <div class="exercise-card" onclick="goToPage('exeFlexi4.html')">
+        <img src="neck.jpg" class="exercise-image" alt="Neck Rolls">
+        <div class="exercise-content">
+          <div class="exercise-title">Neck Rolls</div>
+          <div class="exercise-time">2 sets × 10</div>
+        </div>
+      </div>
+
+      <div class="exercise-card" onclick="goToPage('exeFlexi5.html')">
+        <img src="arm-circles.jpg" class="exercise-image" alt="Arm Circles">
+        <div class="exercise-content">
+          <div class="exercise-title">Arm Circles</div>
+          <div class="exercise-time">2 sets × 15</div>
+        </div>
+      </div>
+
+      <div class="exercise-card" onclick="goToPage('exeFlexi6.html')">
+        <img src="hip-circles.jpg" class="exercise-image" alt="Hip Circles">
+        <div class="exercise-content">
+          <div class="exercise-title">Hip Circles</div>
+          <div class="exercise-time">2 sets × 10</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Navbar -->
+   <div class="nav-bar">
+    <div class="nav-item" onclick="goToPage('index.html')"><i class="fa-solid fa-list-check"></i><br>Plan</div>
+    <div class="nav-item" onclick="goToPage('discover.html')"><i class="fa-solid fa-face-smile"></i><br>Discover</div>
+    <div class="nav-item active"><i class="fa-solid fa-dumbbell"></i><br>Exercise</div>
+    <div class="nav-item" onclick="goToPage('progress.html')"><i class="fa-solid fa-calendar-days"></i><br>Progress</div>
+    <div class="nav-item" onclick="goToPage('settings.html')"><i class="fa-solid fa-gear"></i><br>Settings</div>
+ </div>
+  <!-- JavaScript -->
+  <script>
+    function goToPage(page) {
+      window.location.href = page;
+    }
+  </script>
+</body>
+</html>

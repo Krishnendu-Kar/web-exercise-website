@@ -1,0 +1,69 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Day 1 - Sharpened Jawline</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="day.css"/>
+</head>
+<body>
+  <div class="header">
+    <div class="back-btn" onclick="window.history.back()">⬅️</div>
+    <div class="title-section">
+      <h1>Day 1</h1>
+      <p>Remove Double Chin</p>
+    </div>
+  </div>
+  <div class="stats">
+    <div><strong>6</strong>Exercises</div>
+    <div><strong>6</strong>Minutes</div>
+  </div>
+  <div id="exercise-list"></div>
+
+<script>
+  const exercises = [
+    { name: "Dou Day 1 Exercise 1", link: "douday1ex1.html", video: "" },
+    { name: "Dou Day 1 Exercise 2", link: "douday1ex2.html", video: "" },
+    { name: "Dou Day 1 Exercise 3", link: "douday1ex3.html", video: "" },
+    { name: "Dou Day 1 Exercise 4", link: "douday1ex4.html", video: "" },
+    { name: "Dou Day 1 Exercise 5", link: "douday1ex5.html", video: "" },
+    { name: "Dou Day 1 Exercise 6", link: "douday1ex6.html", video: "" }
+  ];
+
+  const container = document.getElementById('exercise-list');
+  exercises.forEach(ex => {
+    container.innerHTML += `
+      <div class="card" onclick="goToExercise('${ex.link}')">
+        <video src="${ex.video}" autoplay loop muted playsinline></video>
+        <div>
+          <div class="exercise-name">${ex.name}</div>
+          <div class="exercise-time">01:00</div>
+        </div>
+      </div>
+    `;
+  });
+
+  function goToExercise(link) {
+    window.location.href = link;
+  }
+</script>
+
+  <div class="footer-btn" onclick="goToExercise('douday1ex1.html')">Do it Now</div>
+  <script>
+    const goToExercise = p => location.href = p;
+    localStorage.setItem('doubleChinCompletedDays', '1');
+  </script>
+  <script>
+    // Get the current day number from the filename
+    const match = location.pathname.match(/douday(\d+)\.html$/);
+    if (match) {
+      const dayNum = parseInt(match[1]);
+      // Only update if this day is greater than current completed
+      const currentCompleted = parseInt(localStorage.getItem('doubleChinCompletedDays')) || 0;
+      if (dayNum > currentCompleted) {
+        localStorage.setItem('doubleChinCompletedDays', dayNum);
+      }
+    }
+  </script>
+</body>
+</html>

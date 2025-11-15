@@ -1,0 +1,159 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Progress</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+    body {
+      background: #f5f5f5;
+      color: #111;
+    }
+    .container {
+      padding: 1rem;
+      padding-bottom: 4rem;
+    }
+    .header {
+      font-size: 1.8rem;
+      font-weight: bold;
+      padding: 1rem 0;
+    }
+    .calendar {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+    .day {
+      width: 40px;
+      height: 40px;
+      background: #ddd;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .completed {
+      background: #b4ff9c;
+    }
+    .today {
+      background: #111;
+      color: white;
+    }
+    .history-item {
+      background: white;
+      border-radius: 1rem;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+    .nav-bar {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: white;
+      border-top: 1px solid #ccc;
+      display: flex;
+      justify-content: space-around;
+      padding: 0.5rem 0;
+      z-index: 1000;
+    }
+    .nav-item {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #111;
+      cursor: pointer;
+    }
+    .nav-item.active {
+      color: green;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">Progress</div><div style="margin-bottom: 1rem; font-weight: bold;" id="monthDisplay"></div>
+<div class="calendar" id="calendar"></div>
+
+<div id="historyContainer"></div>
+
+  </div>
+  <div class="nav-bar">
+    <div class="nav-item" onclick="goToPage('index.html')"><i class="fa-solid fa-list-check"></i><br>Plan</div>
+    <div class="nav-item" onclick="goToPage('discover.html')"><i class="fa-solid fa-face-smile"></i><br>Discover</div>
+    <div class="nav-item" onclick="goToPage('exercise.html')"><i class="fa-solid fa-dumbbell"></i><br>Exercise</div>
+    <div class="nav-item active" ><i class="fa-solid fa-calendar-days"></i><br>Progress</div>
+    <div class="nav-item" onclick="goToPage('settings.html')"><i class="fa-solid fa-gear"></i><br>Settings</div>
+  </div>  <script>
+    function goToPage(page) {
+      window.location.href = page;
+    }
+
+    const calendarEl = document.getElementById("calendar");
+    const monthDisplay = document.getElementById("monthDisplay");
+    const historyContainer = document.getElementById("historyContainer");
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = today.getMonth();
+    const currentDate = today.getDate();
+
+    const monthKey = `${year}-${month + 1}`;
+    const progress = JSON.parse(localStorage.getItem("progress") || '{}');
+    if (!progress[monthKey]) progress[monthKey] = [];
+
+    monthDisplay.textContent = today.toLocaleString("default", { month: "long" }) + " " + year;
+
+    function renderCalendar() {
+      calendarEl.innerHTML = "";
+      const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+      for (let day = 1; day <= daysInMonth; day++) {
+        const div = document.createElement("div");
+        div.className = "day";
+        div.textContent = day;
+
+        if (progress[monthKey].includes(day)) div.classList.add("completed");
+        if (day === currentDate) div.classList.add("today");
+
+        div.onclick = () => markToday(day);
+        calendarEl.appendChild(div);
+      }
+    }
+
+    function markToday(day) {
+      if (!progress[monthKey].includes(day)) {
+        progress[monthKey].push(day);
+        progress[monthKey].sort((a, b) => a - b);
+        localStorage.setItem("progress", JSON.stringify(progress));
+        addHistoryEntry(day);
+        renderCalendar();
+      }
+    }
+
+    function addHistoryEntry(day) {
+      const div = document.createElement("div");
+      div.className = "history-item";
+      div.innerHTML = `<div><strong>Sharpened Jawline · Day ${day}</strong></div>
+        <div style="font-size: 0.85rem; color: gray;">${today.toDateString()} · ${new Date().toLocaleTimeString()}</div>`;
+      historyContainer.prepend(div);
+    }
+
+    function loadHistory() {
+      historyContainer.innerHTML = "";
+      const entries = progress[monthKey] || [];
+      entries.forEach(day => addHistoryEntry(day));
+    }
+
+    renderCalendar();
+    loadHistory();
+  </script></body>
+</html>

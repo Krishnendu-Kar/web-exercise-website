@@ -1,0 +1,106 @@
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+    body { background: #fff; color: #111; }
+
+    .container { padding: 1rem 1rem 4rem; }
+
+    .section-title {
+      font-size: 1.4rem;
+      font-weight: bold;
+      margin: 1.5rem 0 1rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .exercise-card {
+      background: #f1f1f1;
+      border-radius: 1rem;
+      overflow: hidden;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .exercise-card:hover {
+      transform: scale(1.02);
+    }
+
+    .exercise-image {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+    }
+
+    .exercise-content {
+      padding: 0.6rem;
+    }
+
+    .exercise-title {
+      font-weight: bold;
+      font-size: 1rem;
+    }
+
+    .exercise-time {
+      font-size: 0.8rem;
+      color: gray;
+    }
+
+    .nav-bar {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: #fff;
+      border-top: 1px solid #ccc;
+      display: flex;
+      justify-content: space-around;
+      padding: 0.5rem 0;
+    }
+
+    .nav-item {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #111;
+      cursor: pointer;
+    }
+
+    .nav-item.active {
+      color: green;
+      text-transform: uppercase;
+      font-weight: bold;
+      
+    }
+
+    .upnav-bar {
+      display: flex;
+      overflow-x: auto;
+      white-space: nowrap;
+      scroll-behavior: smooth;
+      background: white;
+      border-bottom: 1px solid #ccc;
+      padding: 0.5rem;
+      text-transform: uppercase;
+    }
+
+    .upnav-item {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      margin-right: 0.5rem;
+      font-size: 0.9rem;
+      color: #111;
+      background: #eee;
+      border-radius: 1rem;
+      cursor: pointer;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+
+    .upnav-item.active {
+      background: #c1ffd7;
+      color: green;
+      font-weight: bold;
+    }
+
+    .upnav-bar::-webkit-scrollbar { display: none; }
+    .upnav-bar { -ms-overflow-style: none; scrollbar-width: none; }

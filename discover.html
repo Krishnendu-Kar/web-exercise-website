@@ -1,0 +1,83 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Discover</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+    body{background:#fff;color:#111}
+    .container{padding:1rem 1rem 4rem}
+    .section-title{font-size:1.4rem;font-weight:bold;margin:1.5rem 0 1rem}
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
+    .exercise-card{background:#f1f1f1;border-radius:1rem;overflow:hidden;cursor:pointer;transition:.2s}
+    .exercise-card:hover{transform:scale(1.02)}
+    .exercise-image{width:100%;height:120px;object-fit:cover}
+    .exercise-content{padding:.6rem}
+    .exercise-title{font-weight:bold;font-size:1rem}
+    .exercise-time{font-size:.8rem;color:gray}
+    .nav-bar{position:fixed;bottom:0;width:100%;background:#fff;border-top:1px solid #ccc;display:flex;justify-content:space-around;padding:.5rem 0}
+    .nav-item{text-align:center;font-size:.9rem;color:#111;cursor:pointer}
+    .nav-item.active{color:green;font-weight:bold;text-transform: uppercase;}
+    .view-all{text-align:right;font-size:.9rem;color:blue;margin:-1rem 0 1rem}
+  </style>
+</head>
+<body>
+  <div class="container" id="main"></div>
+  
+ 
+  
+  <div class="nav-bar">
+    <div class="nav-item" onclick="goToPage('index.html')"><i class="fa-solid fa-list-check"></i><br>Plan</div>
+    <div class="nav-item active"><i class="fa-solid fa-face-smile"></i><br>Discover</div>
+    <div class="nav-item" onclick="goToPage('exercise.html')"><i class="fa-solid fa-dumbbell"></i><br>Exercise</div>
+    <div class="nav-item" onclick="goToPage('progress.html')"><i class="fa-solid fa-calendar-days"></i><br>Progress</div>
+    <div class="nav-item" onclick="goToPage('settings.html')"><i class="fa-solid fa-gear"></i><br>Settings</div>
+   </div>
+  <script>
+    const sections = [
+      { title: "Latest updates",  cards: [
+        { img: "chubbyChick.png", title: "Get rid of chubby cheeks", time: "8 min", link: "discover1.html" },
+        { img: "Fix_asymmetrical_face.jpg", title: "Fix asymmetrical face", time: "8 min", link: "discover2.html" },
+        { img: "", title: "Lose Face Fat", time: "8 min", link: "discover3.html" }
+      ]},
+      { title: "Most popular", cards: [
+        { img: "nose.jpg", title: "Reshape nose", time: "4 min", link: "discover4.html" },
+        { img: "Dark_circles_remove.jpg", title: "Double chin defeater", time: "7 min", link: "discover5.html" }
+      ]},
+      { title: "Transform yourself", cards: [
+        { img: "skin.jpg", title: "Brighten your skin", time: "5 min", link: "discover6.html" },
+        { img: "quiz.jpg", title: "Which is best for you?", time: "2 min", link: "discover7.html" }
+      ]},
+      { title: "Area Specific Courses",  cards: [
+        { img: "skin.jpg", title: "Brighten your skin", time: "5 min", link: "discover8.html" },
+        { img: "quiz.jpg", title: "Which is best for you?", time: "2 min", link: "discover9.html" }
+      ]},
+      { title: "You might like also",  cards: [
+        { img: "skin.jpg", title: "Brighten your skin", time: "5 min", link: "discover10.html" },
+        { img: "quiz.jpg", title: "Which is best for you?", time: "2 min", link: "discover11.html" }
+      ]}
+    ];
+
+    const main = document.getElementById("main");
+    sections.forEach(sec => {
+      main.innerHTML += `<div class="section-title">${sec.title}</div>` +
+        (sec.viewAll ? `<div class="view-all">View all</div>` : '') +
+        `<div class="grid">` +
+        sec.cards.map(card => `
+          <div class="exercise-card" onclick="goToDetail('${card.link}')">
+            <img src="${card.img}" class="exercise-image" alt="${card.title}">
+            <div class="exercise-content">
+              <div class="exercise-title">${card.title}</div>
+              <div class="exercise-time">${card.time}</div>
+            </div>
+          </div>`).join('') +
+        `</div>`;
+    });
+
+    const goToPage = p => location.href = p;
+    const goToDetail = p => location.href = p;
+  </script>
+</body>
+</html>

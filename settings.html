@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Settings</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <style>
+    :root {
+      --bg: #f5f5f5;
+      --text: #111;
+    }
+    body.dark {
+      --bg: #121212;
+      --text: #eee;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      transition: background 0.3s, color 0.3s;
+    }
+    .container {
+      padding: 1rem;
+      padding-bottom: 5rem;
+    }
+    .header {
+      font-size: 1.8rem;
+      font-weight: bold;
+      padding: 1rem 0;
+    }
+    .toggle-theme {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 1rem 0;
+    }
+    .info-group {
+      margin: 1rem 0;
+      background: rgba(255,255,255,0.1);
+      padding: 0.75rem 1rem;
+      border-radius: 0.5rem;
+    }
+    .info-group label {
+      font-size: 0.85rem;
+      color: gray;
+    }
+    .info-group p {
+      font-size: 1rem;
+      margin-top: 0.2rem;
+      font-weight: 500;
+    }
+    .logout-btn {
+      background: #d9534f;
+      color: white;
+      padding: 0.8rem;
+      border: none;
+      border-radius: 1rem;
+      width: 100%;
+      font-weight: bold;
+      margin-top: 2rem;
+      cursor: pointer;
+    }
+    .nav-bar {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: var(--bg);
+      border-top: 1px solid #ccc;
+      display: flex;
+      justify-content: space-around;
+      padding: 0.5rem 0;
+    }
+    .nav-item {
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--text);
+      cursor: pointer;
+    }
+    .nav-item.active {
+      color: green;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">Settings</div>
+
+    <!-- Dark Mode Toggle -->
+    <div class="toggle-theme">
+      <div><strong>Dark Mode</strong></div>
+      <input type="checkbox" id="themeToggle" />
+    </div>
+
+    <!-- Read-Only Info Display -->
+    <div class="info-group">
+      <label>Name</label>
+      <p id="name">Loading...</p>
+    </div>
+    <div class="info-group">
+      <label>Mobile Number</label>
+      <p id="mobile">Loading...</p>
+    </div>
+    <div class="info-group">
+      <label>Email</label>
+      <p id="email">Loading...</p>
+    </div>
+    <div class="info-group">
+      <label>Address</label>
+      <p id="address">Loading...</p>
+    </div>
+
+    <!-- Logout -->
+    <button class="logout-btn" onclick="logout()">Logout</button>
+  </div>
+
+  <!-- Navigation Bar -->
+  <div class="nav-bar">
+    <div class="nav-item" onclick="goToPage('index.html')"><i class="fa-solid fa-list-check"></i><br>Plan</div>
+    <div class="nav-item" onclick="goToPage('discover.html')"><i class="fa-solid fa-face-smile"></i><br>Discover</div>
+    <div class="nav-item" onclick="goToPage('exercise.html')"><i class="fa-solid fa-dumbbell"></i><br>Exercise</div>
+    <div class="nav-item" onclick="goToPage('progress.html')"><i class="fa-solid fa-calendar-days"></i><br>Progress</div>
+    <div class="nav-item active"><i class="fa-solid fa-gear"></i><br>Settings</div>
+  </div>
+
+  <!-- Script -->
+  <script>
+    const toggle = document.getElementById('themeToggle');
+    if (localStorage.getItem('theme') === 'dark') {
+      document.body.classList.add('dark');
+      toggle.checked = true;
+    }
+
+    toggle.addEventListener('change', () => {
+      document.body.classList.toggle('dark');
+      localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+    });
+
+    window.onload = () => {
+      document.getElementById('name').textContent = localStorage.getItem('name') || 'Not set';
+      document.getElementById('mobile').textContent = localStorage.getItem('mobile') || 'Not set';
+      document.getElementById('email').textContent = localStorage.getItem('email') || 'Not set';
+      document.getElementById('address').textContent = localStorage.getItem('address') || 'Not set';
+    };
+
+    function logout() {
+      localStorage.clear();
+      window.location.href = 'login.html';
+    }
+
+    function goToPage(page) {
+      window.location.href = page;
+    }
+  </script>
+</body>
+</html>

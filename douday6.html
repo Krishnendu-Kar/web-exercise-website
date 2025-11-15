@@ -1,0 +1,143 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Day 6 - Sharpened Jawline</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="day.css"/>
+</head>
+<body>
+  <div class="header">
+    <div class="back-btn" onclick="window.history.back()">⬅️</div>
+    <div class="title-section">
+      <h1>Day 6</h1>
+      <p>Remove Double Chin</p>
+    </div>
+  </div>
+  <div class="stats">
+    <div><strong>6</strong>Exercises</div>
+    <div><strong>6</strong>Minutes</div>
+  </div>
+  <div id="exercise-list"></div>
+
+<script>
+  const exercises = [
+    { name: "Dou Day 6 Exercise 1", link: "douday9ex1.html", video: "" },
+    { name: "Dou Day 6 Exercise 2", link: "douday9ex2.html", video: "" },
+    { name: "Dou Day 6 Exercise 3", link: "douday9ex3.html", video: "" },
+    { name: "Dou Day 6 Exercise 4", link: "douday9ex4.html", video: "" },
+    { name: "Dou Day 6 Exercise 5", link: "douday9ex5.html", video: "" },
+    { name: "Dou Day 6 Exercise 6", link: "douday9ex6.html", video: "" }
+  ];
+
+  const container = document.getElementById('exercise-list');
+  exercises.forEach(ex => {
+    container.innerHTML += `
+      <div class="card" onclick="goToExercise('${ex.link}')">
+        <video src="${ex.video}" autoplay loop muted playsinline></video>
+        <div>
+          <div class="exercise-name">${ex.name}</div>
+          <div class="exercise-time">01:00</div>
+        </div>
+      </div>
+    `;
+  });
+
+  function goToExercise(link) {
+    window.location.href = link;
+  }
+</script>
+
+
+  <div class="footer-btn" onclick="goToExercise('douday9ex1.html')">Do it Now</div>
+  <script>
+    const goToExercise = p => location.href = p;
+  </script>
+  <script>
+  // Example: On douday1.html when user completes
+  const dayCompleted = 1;
+  const previous = parseInt(localStorage.getItem('doubleChinCompletedDays')) || 0;
+  if (dayCompleted > previous) {
+    localStorage.setItem('doubleChinCompletedDays', dayCompleted);
+  }
+  
+  
+  <script>
+  const currentDay = 1; // CHANGE this for each day: 2, 3, ..., 30
+  const totalExercises = 6;
+
+  function markExerciseComplete(exIndex) {
+    const key = `day${currentDay}_ex${exIndex}`;
+    localStorage.setItem(key, 'done');
+    checkIfAllDone();
+  }
+
+  function checkIfAllDone() {
+    let allDone = true;
+    for (let i = 1; i <= totalExercises; i++) {
+      if (localStorage.getItem(`day${currentDay}_ex${i}`) !== 'done') {
+        allDone = false;
+        break;
+      }
+    }
+
+    if (allDone) {
+      const maxCompleted = parseInt(localStorage.getItem('doubleChinCompletedDays')) || 0;
+      if (currentDay > maxCompleted) {
+        localStorage.setItem('doubleChinCompletedDays', currentDay);
+      }
+    }
+  }
+
+  // Optional: Check on page load if already done
+  checkIfAllDone();
+</script>
+</script>
+<script>
+  const currentDay = parseInt(location.pathname.match(/douday(\d+)\.html/)?.[1] || 0);
+  const totalExercises = 6;
+
+  function markExerciseComplete(exIndex) {
+    const key = `day${currentDay}_ex${exIndex}`;
+    localStorage.setItem(key, 'done');
+    checkIfAllDone();
+    
+    // Optional: Disable button after clicking
+    document.querySelectorAll('.done-btn')[exIndex - 1].innerText = "✓ Done";
+    document.querySelectorAll('.done-btn')[exIndex - 1].disabled = true;
+  }
+
+  function checkIfAllDone() {
+    let allDone = true;
+    for (let i = 1; i <= totalExercises; i++) {
+      if (localStorage.getItem(`day${currentDay}_ex${i}`) !== 'done') {
+        allDone = false;
+        break;
+      }
+    }
+
+    if (allDone) {
+      const maxCompleted = parseInt(localStorage.getItem('doubleChinCompletedDays')) || 0;
+      if (currentDay > maxCompleted) {
+        localStorage.setItem('doubleChinCompletedDays', currentDay);
+        alert(`🎉 Day ${currentDay} completed! Day ${currentDay + 1} is now unlocked.`);
+      }
+    }
+  }
+
+  // Mark buttons done if already completed
+  window.onload = () => {
+    for (let i = 1; i <= totalExercises; i++) {
+      const key = `day${currentDay}_ex${i}`;
+      if (localStorage.getItem(key) === 'done') {
+        const btn = document.querySelectorAll('.done-btn')[i - 1];
+        if (btn) {
+          btn.innerText = "✓ Done";
+          btn.disabled = true;
+        }
+      }
+    }
+  };
+</script>
+</body>
+</html>

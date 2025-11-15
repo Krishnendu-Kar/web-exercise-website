@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Strength Training</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <link rel="stylesheet" href="exercise.css"/>
+
+</head>
+<body>
+
+  <!-- Top Navbar -->
+   <div class="upnav-bar">
+    <div class="upnav-item" onclick="goToPage('exercise.html')">Cardio (Aerobic)</div>
+    <div class="upnav-item" onclick="goToPage('flexo.html')">Flexibility & Mobility</div>
+    <div class="upnav-item active" onclick="goToPage('stre.html')">Strength Training</div>
+    <div class="upnav-item" onclick="goToPage('baSta.html')">Balance & Stability</div>
+    <div class="upnav-item" onclick="goToPage('posC.html')">Posture Correction</div>
+    <div class="upnav-item" onclick="goToPage('brainReac.html')">Brain & Reaction</div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="section-title">Build Muscles & Body Strength</div>
+    <div class="grid">
+      <div class="exercise-card" onclick="goToPage('exeStrength1.html')">
+        <img src="pushup.jpg" class="exercise-image" alt="Push-ups">
+        <div class="exercise-content">
+          <div class="exercise-title">Push-ups</div>
+          <div class="exercise-time">3 sets × 12 reps</div>
+        </div>
+      </div>
+
+      <div class="exercise-card" onclick="goToPage('exeStrength2.html')">
+        <img src="pullup.jpg" class="exercise-image" alt="Pull-ups">
+        <div class="exercise-content">
+          <div class="exercise-title">Pull-ups</div>
+          <div class="exercise-time">3 sets × 6 reps</div>
+        </div>
+      </div>
+
+      <div class="exercise-card" onclick="goToPage('exeStrength3.html')">
+        <img src="squats.jpg" class="exercise-image" alt="Squats">
+        <div class="exercise-content">
+          <div class="exercise-title">Squats</div>
+          <div class="exercise-time">3 sets × 15 reps</div>
+        </div>
+      </div>
+
+      <div class="exercise-card" onclick="goToPage('exeStrength4.html')">
+        <img src="lunges.jpg" class="exercise-image" alt="Lunges">
+        <div class="exercise-content">
+          <div class="exercise-title">Lunges</div>
+          <div class="exercise-time">3 sets × 10 each leg</div>
+        </div>
+      </div>
+
+      <div class="exercise-card" onclick="goToPage('exeStrength5.html')">
+        <img src="deadlift.jpg" class="exercise-image" alt="Deadlifts">
+        <div class="exercise-content">
+          <div class="exercise-title">Deadlifts</div>
+          <div class="exercise-time">3 sets × 5 reps</div>
+        </div>
+      </div>
+
+      <div class="exercise-card" onclick="goToPage('exeStrength6.html')">
+        <img src="bench.jpg" class="exercise-image" alt="Bench Press">
+        <div class="exercise-content">
+          <div class="exercise-title">Bench Press</div>
+          <div class="exercise-time">3 sets × 8 reps</div>
+        </div>
+      </div>
+
+      <div class="exercise-card" onclick="goToPage('exeStrength7.html')">
+        <img src="plank.jpg" class="exercise-image" alt="Planks">
+        <div class="exercise-content">
+          <div class="exercise-title">Planks</div>
+          <div class="exercise-time">3 sets × 45 sec</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Navbar -->
+ <div class="nav-bar">
+    <div class="nav-item" onclick="goToPage('index.html')"><i class="fa-solid fa-list-check"></i><br>Plan</div>
+    <div class="nav-item" onclick="goToPage('discover.html')"><i class="fa-solid fa-face-smile"></i><br>Discover</div>
+    <div class="nav-item active"><i class="fa-solid fa-dumbbell"></i><br>Exercise</div>
+    <div class="nav-item" onclick="goToPage('progress.html')"><i class="fa-solid fa-calendar-days"></i><br>Progress</div>
+    <div class="nav-item" onclick="goToPage('settings.html')"><i class="fa-solid fa-gear"></i><br>Settings</div>
+ </div>
+  <!-- JavaScript -->
+  <script>
+    function goToPage(page) {
+      window.location.href = page;
+    }
+  </script>
+</body>
+</html>

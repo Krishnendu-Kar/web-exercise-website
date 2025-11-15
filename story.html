@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Story View</title>
+    <link rel="stylesheet" href="story.css"/>
+</head>
+<body>
+
+<div class="story-container">
+  <div class="progress-bar" id="progressBar"></div>
+  <div class="nav-zone nav-prev" onclick="prevStory()" style="left:0;"></div>
+  <div class="nav-zone nav-next" onclick="nextStory()" style="right:0;"></div>
+  <div class="content" id="storyContent">
+    <!-- Dynamic content will load here -->
+  </div>
+</div>
+
+<script>
+  const stories = [
+    {
+      title: "Effortless Skincare for Men: 3 Steps to Follow",
+      image: "https://i.imgur.com/qmKy2kJ.jpg" // Replace with your own URL or path
+    },
+    {
+      title: "Cleanse Your Face Daily",
+      image: "https://i.imgur.com/1NWJPuD.jpg"
+    },
+    {
+      title: "Moisturize After Every Wash",
+      image: "https://i.imgur.com/52ctbcv.jpg"
+    },
+    {
+      title: "Use Sunscreen Before Going Out",
+      image: "https://i.imgur.com/HWjTP3e.jpg"
+    }
+  ];
+
+  let currentIndex = 0;
+  let timer;
+
+  function loadStory(index) {
+    const content = document.getElementById('storyContent');
+    content.innerHTML = `
+      <h1>${stories[index].title}</h1>
+      <img src="${stories[index].image}" alt="story image" />
+    `;
+
+    const progressBar = document.getElementById('progressBar');
+    progressBar.innerHTML = stories.map((_, i) => `
+      <div class="progress ${i === index ? 'active' : ''}">
+        <div class="fill"></div>
+      </div>
+    `).join('');
+
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      nextStory();
+    }, 5000); // 5 seconds per story
+  }
+
+  function nextStory() {
+  if (currentIndex < stories.length - 1) {
+    currentIndex++;
+    loadStory(currentIndex);
+  } else {
+    // Reached last story → go to next HTML page
+    window.location.href = "nextpage.html"; // ✅ Change to your desired page
+  }
+}
+
+function prevStory() {
+  if (currentIndex > 0) {
+    currentIndex--;
+    loadStory(currentIndex);
+  } else {
+    // Reached first story → go to previous HTML page
+    window.location.href = "previouspage.html"; // ✅ Change to your desired page
+  }
+}
+    // Initial load
+    loadStory(currentIndex);
+    // Start the progress animation
+    document.querySelectorAll('.progress.active .fill').forEach(fill => {
+        fill.style.animation = 'fillStory 5s linear forwards';
+    });
+
+</script>
+
+</body>
+</html>

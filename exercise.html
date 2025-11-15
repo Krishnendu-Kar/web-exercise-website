@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cardio Exercises</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <link rel="stylesheet" href="exercise.css"/>
+
+  
+</head>
+<body>
+  <!-- Top Horizontal Scroll Nav -->
+ <div class="upnav-bar">
+    <div class="upnav-item active" onclick="goToPage('exercise.html')">Cardio (Aerobic)</div>
+    <div class="upnav-item " onclick="goToPage('flexo.html')">Flexibility & Mobility</div>
+    <div class="upnav-item" onclick="goToPage('stre.html')">Strength Training</div>
+    <div class="upnav-item" onclick="goToPage('baSta.html')">Balance & Stability</div>
+    <div class="upnav-item" onclick="goToPage('posC.html')">Posture Correction</div>
+    <div class="upnav-item" onclick="goToPage('brainReac.html')">Brain & Reaction</div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="section-title">Cardio (Aerobic) Exercises</div>
+    <div class="grid">
+      <div class="exercise-card" onclick="goToDetail('exeCar1.html')">
+        <img src="running.png" class="exercise-image" alt="Running">
+        <div class="exercise-content">
+          <div class="exercise-title">Running / Jogging</div>
+          <div class="exercise-time">10–30 min</div>
+        </div>
+      </div>
+
+      <div class="exercise-card" onclick="goToDetail('exeCar2.html')">
+        <img src="cycle.jpg" class="exercise-image" alt="Cycling">
+        <div class="exercise-content">
+          <div class="exercise-title">Cycling</div>
+          <div class="exercise-time">20–45 min</div>
+        </div>
+      </div>
+
+      <div class="exercise-card" onclick="goToDetail('exeCar3.html')">
+        <img src="jumping.jpg" class="exercise-image" alt="Jumping Jacks">
+        <div class="exercise-content">
+          <div class="exercise-title">Jumping Jacks</div>
+          <div class="exercise-time">3 sets × 30 reps</div>
+        </div>
+      </div>
+
+      <div class="exercise-card" onclick="goToDetail('exeCar4.html')">
+        <img src="burpees.jpg" class="exercise-image" alt="Burpees">
+        <div class="exercise-content">
+          <div class="exercise-title">Burpees</div>
+          <div class="exercise-time">3 sets × 10 reps</div>
+        </div>
+      </div>
+
+      <div class="exercise-card" onclick="goToDetail('exeCar5.html')">
+        <img src="mountain.jpg" class="exercise-image" alt="Mountain Climbers">
+        <div class="exercise-content">
+          <div class="exercise-title">Mountain Climbers</div>
+          <div class="exercise-time">3 sets × 20 secs</div>
+        </div>
+      </div>
+      <div class="exercise-card" onclick="goToDetail('exeCar6.html')">
+        <img src="skipping.jpg" class="exercise-image" alt="Skipping Rope">
+        <div class="exercise-content">
+          <div class="exercise-title">Skipping Rope</div>
+          <div class="exercise-time">5–10 min</div>
+        </div>
+      </div>
+
+      <div class="exercise-card" onclick="goToDetail('exeCar7.html')">
+        <img src="knees.jpg" class="exercise-image" alt="High Knees">
+        <div class="exercise-content">
+          <div class="exercise-title">High Knees</div>
+          <div class="exercise-time">3 sets × 30 secs</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Navigation -->
+  <div class="nav-bar">
+    <div class="nav-item" onclick="goToPage('index.html')"><i class="fa-solid fa-list-check"></i><br>Plan</div>
+    <div class="nav-item" onclick="goToPage('discover.html')"><i class="fa-solid fa-face-smile"></i><br>Discover</div>
+    <div class="nav-item active"><i class="fa-solid fa-dumbbell"></i><br>Exercise</div>
+    <div class="nav-item" onclick="goToPage('progress.html')"><i class="fa-solid fa-calendar-days"></i><br>Progress</div>
+    <div class="nav-item" onclick="goToPage('settings.html')"><i class="fa-solid fa-gear"></i><br>Settings</div>
+ </div>
+
+  <!-- JavaScript -->
+  <script>
+    function goToPage(page) {
+      window.location.href = page;
+    }
+
+    function goToDetail(page) {
+      window.location.href = page;
+    }
+  </script>
+</body>
+</html>

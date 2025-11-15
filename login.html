@@ -1,0 +1,124 @@
+<!-- LOGIN PAGE (login.html) WITH PASSWORD --><!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+    }
+    body {
+      background-color: #f5f5f5;
+      padding: 2rem;
+    }
+    .login-box {
+      max-width: 400px;
+      margin: 3rem auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .login-box h2 {
+      margin-bottom: 1rem;
+    }
+    .input-group {
+      margin-bottom: 1rem;
+    }
+    .input-group label {
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+    .input-group input {
+      width: 100%;
+      padding: 0.6rem;
+      border: 1px solid #ccc;
+      border-radius: 0.5rem;
+    }
+    button {
+      width: 100%;
+      padding: 0.8rem;
+      border: none;
+      background-color: green;
+      color: white;
+      font-weight: bold;
+      border-radius: 0.5rem;
+      cursor: pointer;
+    }
+    .error {
+      color: red;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-box">
+    <h2>Login</h2>
+    <div class="error" id="error"></div>
+    <div class="input-group">
+      <label>Name</label>
+      <input type="text" id="name" />
+    </div>
+    <div class="input-group">
+      <label>Mobile Number</label>
+      <input type="number" id="mobile" />
+    </div>
+    <div class="input-group">
+      <label>Email</label>
+      <input type="email" id="email" />
+    </div>
+    <div class="input-group">
+      <label>Address</label>
+      <input type="text" id="address" />
+    </div>
+    <div class="input-group">
+      <label>Password</label>
+      <input type="password" id="password" />
+    </div>
+    <button onclick="login()">Login</button>
+  </div>  <script>
+    function hash(str) {
+      let hash = 0;
+      for (let i = 0; i < str.length; i++) {
+        hash = (hash << 5) - hash + str.charCodeAt(i);
+        hash |= 0; // Convert to 32bit int
+      }
+      return hash;
+    }
+
+    function login() {
+      const name = document.getElementById('name').value;
+      const mobile = document.getElementById('mobile').value;
+      const email = document.getElementById('email').value;
+      const address = document.getElementById('address').value;
+      const password = document.getElementById('password').value;
+      const error = document.getElementById('error');
+
+      const savedHash = localStorage.getItem('passwordHash');
+
+      if (savedHash) {
+        // login mode
+        if (hash(password).toString() === savedHash) {
+          error.textContent = '';
+          window.location.href = 'settings.html';
+        } else {
+          error.textContent = 'Incorrect password.';
+        }
+      } else {
+        // first time setup
+        localStorage.setItem('name', name);
+        localStorage.setItem('mobile', mobile);
+        localStorage.setItem('email', email);
+        localStorage.setItem('address', address);
+        localStorage.setItem('passwordHash', hash(password).toString());
+        error.textContent = '';
+        window.location.href = 'settings.html';
+      }
+    }
+  </script></body>
+</html><!-- SETTINGS PAGE (settings.html) remains unchanged from previous version -->
